@@ -94,6 +94,12 @@ Managing authentication state and protected routes
 
 Implementing CRUD operations using MSSQL
 
+# Challenges Encountered
+
+1. Most of my previous projects used MongoDB and PostgreSQL, so working with MSSQL and SSMS was a new experience for me.
+2. This was my first time working with Microsoft SQL Server in a Node.js/Express application, so configuring the connection and working with SQL queries required some troubleshooting.
+3. I used AI building this project as a coding assistant. I still reviewed the code, and tested the functionality.
+
 Author
 
-Levin Salamat
+Levin Justin Don Salamat
