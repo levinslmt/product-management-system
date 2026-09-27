@@ -57,3 +57,51 @@ export async function login(req, res) {
     });
   }
 }
+
+export async function register(req, res) {
+  try {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({
+        message: "Username and password are required",
+      });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({
+        message: "Password must be at least 6 characters",
+      });
+    }
+
+    const existingUser = await sql.query`
+      SELECT Id
+      FROM Users
+      WHERE Username = ${username}
+    `;
+
+    if (existingUser.recordset.length > 0) {
+      return res.status(409).json({
+        message: "Username already exists",
+      });
+    }
+
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const result = await sql.query`
+      INSERT INTO Users (Username, PasswordHash)
+      OUTPUT INSERTED.Id, INSERTED.Username
+      VALUES (${username}, ${passwordHash})
+    `;
+
+    res.status(201).json({
+      message: "Registration successful",
+      user: result.recordset[0],
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Registration failed",
+    });
+  }
+}
