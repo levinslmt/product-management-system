@@ -94,3 +94,22 @@ export async function deleteProduct(req, res) {
     });
   }
 }
+
+export async function getProductReport(req, res) {
+  try {
+    const result = await sql.query`
+      SELECT
+        COUNT(*) AS totalProducts,
+        COALESCE(SUM(Quantity), 0) AS totalQuantity,
+        COALESCE(SUM(Price * Quantity), 0) AS totalInventoryValue
+      FROM Products
+    `;
+
+    res.json(result.recordset[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Failed to generate product report",
+    });
+  }
+}
