@@ -1,12 +1,5 @@
-import {
-  Button,
-  Card,
-  Form,
-  Input,
-  message,
-  Typography,
-} from "antd";
-import { useNavigate } from "react-router-dom";
+import { Button, Card, Form, Input, message, Typography } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api/axios";
 
 const { Title, Text } = Typography;
@@ -46,8 +39,7 @@ function Login({ setToken }: LoginProps) {
       console.error(error);
 
       const errorMessage =
-        error.response?.data?.message ||
-        "Unable to connect to the server";
+        error.response?.data?.message || "Unable to connect to the server";
 
       messageApi.error(errorMessage);
     }
@@ -66,11 +58,7 @@ function Login({ setToken }: LoginProps) {
           </Text>
         </div>
 
-        <Form
-          layout="vertical"
-          onFinish={handleLogin}
-          size="large"
-        >
+        <Form layout="vertical" onFinish={handleLogin} size="large">
           <Form.Item
             label="Username"
             name="username"
@@ -98,13 +86,14 @@ function Login({ setToken }: LoginProps) {
           </Form.Item>
 
           <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              block
-            >
+            <Button type="primary" htmlType="submit" block>
               Login
             </Button>
+            <div style={{ textAlign: "center" }}>
+              <Text type="secondary">
+                Don't have an account? <Link to="/register">Register</Link>
+              </Text>
+            </div>
           </Form.Item>
         </Form>
       </Card>
