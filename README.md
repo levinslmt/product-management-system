@@ -82,18 +82,6 @@ Setup and Testing
 
 For installation, configuration, running, and testing instructions, see SETUP.md.
 
-Challenges Encountered
-
-Connecting Express.js to Microsoft SQL Server
-
-Implementing JWT authentication
-
-Connecting the React frontend to the Express REST API
-
-Managing authentication state and protected routes
-
-Implementing CRUD operations using MSSQL
-
 # Challenges Encountered
 
 1. Most of my previous projects used MongoDB and PostgreSQL, so working with MSSQL and SSMS was a new experience for me.

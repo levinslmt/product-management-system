@@ -189,7 +189,7 @@ The login response contains a JWT token.
 
 For protected product endpoints, send the token using:
 
-Authorization: Bearer <token>
+Authorization: Bearer YOUR_TOKEN
 
 Get Products
 
