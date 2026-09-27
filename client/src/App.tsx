@@ -26,6 +26,7 @@ function App() {
           }
         />
 
+        {/* Register */}
         <Route
           path="/register"
           element={token ? <Navigate to="/products" replace /> : <Register />}
